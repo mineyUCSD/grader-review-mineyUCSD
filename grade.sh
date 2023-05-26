@@ -12,7 +12,7 @@ echo 'Finished cloning'
 files=`find ./student-submission`
 
 a=0
-tests=1;
+tests=4;
 
 for file in $files
 do
