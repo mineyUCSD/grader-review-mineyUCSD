@@ -1,11 +1,11 @@
 
-if [[ `uname` == "Linux" ]]
+if [[ `uname` == "MINGW64_NT-10.0-22621" ]]
 then
     echo `uname`
-    CPATH='.:hamcrest-core-1.3.jar:junit-4.13.2.jar'
+    CPATH='.;hamcrest-core-1.3.jar;junit-4.13.2.jar'
 else
     echo `uname`
-    CPATH='.;hamcrest-core-1.3.jar;junit-4.13.2.jar'
+    CPATH='.:hamcrest-core-1.3.jar:junit-4.13.2.jar'
 fi
 
 
