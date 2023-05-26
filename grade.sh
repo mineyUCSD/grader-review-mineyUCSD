@@ -1,5 +1,14 @@
 
-CPATH='.:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar'
+if [[ `uname` == "Linux" ]]
+then
+    echo `uname`
+    CPATH='.:hamcrest-core-1.3.jar:junit-4.13.2.jar'
+else
+    echo `uname`
+    CPATH='.;hamcrest-core-1.3.jar;junit-4.13.2.jar'
+fi
+
+
 
 rm -rf student-submission
 rm -rf grading-area
