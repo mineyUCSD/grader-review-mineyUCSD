@@ -12,6 +12,7 @@ echo 'Finished cloning'
 files=`find ./student-submission`
 
 a=0
+tests=1;
 
 for file in $files
 do
@@ -48,20 +49,43 @@ else
     exit
 fi
 
-java -cp ".;hamcrest-core-1.3.jar;junit-4.13.2.jar" org.junit.runner.JUnitCore TestListExamples > ScoreReport.txt
+java -cp ".;hamcrest-core-1.3.jar;junit-4.13.2.jar" org.junit.runner.JUnitCore TestListExamples > JUnitOutput.txt
 
 echo "Output redirected to ./grading-area/grade.sh"
 
-cat ScoreReport.txt
+echo "Analyzing JUnitOutput..."
+
+success=`grep -o "OK" JUnitOutput.txt`
+
+if [[ $success == "OK" ]]
+then
+    echo "All Tests Passed"
+    echo "Total Tests: $tests"
+    echo "Score: $tests/$tests"
+    exit
+fi
+
+echo "Looks like some tests failed! Bozo Clown Baby!"
+
+grep -i "Tests run:" JUnitOutput.txt | grep -Eo '[0-9]{1,4}' > ScoreReport.txt
+
+testsRan=`sed -n 1p ScoreReport.txt`
+testsFailed=`sed -n 2p ScoreReport.txt`
+let "testsPassed = $tests - $testsFailed"
+
+echo "Total Tests: $tests"
+echo "Tests Ran: $testsRan"
+echo "Tests Failed: $testsFailed"
+echo "Tests Passed: $testsPassed"
+echo "Score: $testsPassed/$testsRan"
+exit
 
 
-echo "Analyzing ScoreReport"
+ 
 
-grep -i "OK" ScoreReport.txt > Grader.txt
 
-grep -i "Ok" ScoreReport.txt
 
-tests=1
+
 
 
 
