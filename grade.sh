@@ -48,7 +48,7 @@ cp ./lib/junit-4.13.2.jar grading-area
 
 cd ./grading-area
 
-javac -cp ".;hamcrest-core-1.3.jar;junit-4.13.2.jar" *.java
+javac -cp $CPATH *.java
 
 if [[ $? == "0" ]]
 then 
@@ -58,7 +58,7 @@ else
     exit
 fi
 
-java -cp ".;hamcrest-core-1.3.jar;junit-4.13.2.jar" org.junit.runner.JUnitCore TestListExamples > JUnitOutput.txt
+java -cp $CPATH org.junit.runner.JUnitCore TestListExamples > JUnitOutput.txt
 
 echo "Output redirected to ./grading-area/grade.sh"
 
