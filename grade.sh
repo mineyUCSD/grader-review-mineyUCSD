@@ -21,7 +21,7 @@ echo 'Finished cloning'
 files=`find ./student-submission`
 
 a=0
-tests=5;
+tests=8
 
 for file in $files
 do
@@ -80,13 +80,13 @@ grep -i "Tests run:" JUnitOutput.txt | grep -Eo '[0-9]{1,4}' > ScoreReport.txt
 
 testsRan=`sed -n 1p ScoreReport.txt`
 testsFailed=`sed -n 2p ScoreReport.txt`
-let "testsPassed = $tests - $testsFailed"
+let "testsPassed = $testsRan - $testsFailed"
 
 echo "Total Tests: $tests"
 echo "Tests Ran: $testsRan"
 echo "Tests Failed: $testsFailed"
 echo "Tests Passed: $testsPassed"
-echo "Score: $testsPassed/$testsRan"
+echo "Score: $testsPassed/$tests"
 exit
 
 
