@@ -25,6 +25,26 @@ public class TestListExamples {
     List<String> expected = Arrays.asList("a", "a", "b", "c", "d");
     assertEquals(expected, merged);
   }
+
+  @Test(timeout = 500)
+  public void testMergeLeftEnd() {
+    List<String> left = Arrays.asList("a", "b", "z");
+    List<String> right = Arrays.asList("a", "d");
+    List<String> merged = ListExamples.merge(left, right);
+    List<String> expected = Arrays.asList("a", "a", "b", "d", "z");
+    assertEquals(expected, merged);
+  }
+
+  @Test(timeout = 500)
+  public void testMerge() {
+	  List<String> first = Arrays.asList("m, r, t");
+	  List<String> second = Arrays.asList("w, w, y");
+	  List<String> merged = ListExamples.merge(first,second);
+	  List<String> expected = Arrays.asList("m, r, t, w, w, y");
+	  assertEquals(expected, merged);
+  }
+
+
   @Test(timeout = 500)
   public void testSubtleArrays() {
     List<String> s1 = Arrays.asList("a", "b", "a");
@@ -59,10 +79,8 @@ public class TestListExamples {
     List<String> result2 = ListExamples.filter(s2, new IsA());
     List<String> expected1 = Arrays.asList("a","a");
     List<String> expected2 = Arrays.asList("a");
-    assertEquals(true, result1==result2);
+    assertEquals(false, result1==result2);
   }
-
-
 
   @Test(timeout = 500)
   public void testSubtleEmpty() {
@@ -75,18 +93,6 @@ public class TestListExamples {
     assertEquals(expected1.size(), result1.size());
     assertEquals(expected2.size(), result2.size());
     assertEquals(false, result1==result2);
-  }
-
-
-
-
- @Test(timeout = 500)
-  public void testMergeLeftEnd() {
-    List<String> left = Arrays.asList("a", "b", "z");
-    List<String> right = Arrays.asList("a", "d");
-    List<String> merged = ListExamples.merge(left, right);
-    List<String> expected = Arrays.asList("a", "a", "b", "d", "z");
-    assertEquals(expected, merged);
   }
 
   @Test(timeout = 500)

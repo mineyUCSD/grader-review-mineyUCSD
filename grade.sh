@@ -21,7 +21,7 @@ echo 'Finished cloning'
 files=`find ./student-submission`
 
 a=0
-tests=8
+tests=9
 
 for file in $files
 do
