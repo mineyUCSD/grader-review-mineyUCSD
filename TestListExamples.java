@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.*;
+
 
 class IsMoon implements StringChecker {
   public boolean checkString(String s) {
@@ -37,10 +37,10 @@ public class TestListExamples {
 
   @Test(timeout = 500)
   public void testMerge() {
-	  List<String> first = Arrays.asList("m, r, t");
-	  List<String> second = Arrays.asList("w, w, y");
+	  List<String> first = Arrays.asList("m", "r", "t");
+	  List<String> second = Arrays.asList("w", "w", "y");
 	  List<String> merged = ListExamples.merge(first,second);
-	  List<String> expected = Arrays.asList("m, r, t, w, w, y");
+	  List<String> expected = Arrays.asList("m", "r", "t", "w", "w", "y");
 	  assertEquals(expected, merged);
   }
 
@@ -85,11 +85,11 @@ public class TestListExamples {
   @Test(timeout = 500)
   public void testSubtleEmpty() {
     List<String> s1 = Arrays.asList("a", "b", "a");
-    List<String> s2 = new ArrayList<String>();
+    List<String> s2 = Arrays.asList();
     List<String> result1 = ListExamples.filter(s1, new IsA());
     List<String> result2 = ListExamples.filter(s2, new IsA());
     List<String> expected1 = Arrays.asList("a","a");
-    List<String> expected2 = new ArrayList<String>();
+    List<String> expected2 =  Arrays.asList();
     assertEquals(expected1.size(), result1.size());
     assertEquals(expected2.size(), result2.size());
     assertEquals(false, result1==result2);
